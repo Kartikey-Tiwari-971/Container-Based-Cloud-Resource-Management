@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-resource-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-resource-app
+  template:
+    metadata:
+      labels:
+        app: cloud-resource-app
+    spec:
+      containers:
+      - name: cloud-resource-app
+        image: cloud-resource-app:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
